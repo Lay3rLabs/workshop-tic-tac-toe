@@ -18,10 +18,10 @@ codecov.json
 *.log
 schema/
 schemas/
-.DS_Store
+# s.DS_Store
 .vscode
 .idea
-*.swp
+*.sw
 *.swo
 
 
