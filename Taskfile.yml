@@ -1,0 +1,20 @@
+version: '3'
+
+dotenv: ['.env']
+
+
+tasks:
+  deploy:
+    cmds:
+      - avs-toolkit-cli wasmatic deploy --name tic-tac-toe --wasm-source ./target/wasm32-wasip1/release/tic_tac_toe.wasm --testable --task {{.TEST_TASK_QUEUE_ADDRESS}}
+    deps: [build]
+
+  build:
+    cmds:
+      - cargo component build --release
+
+  create-avs:
+    desc: Run in avs-toolkit repo!
+
+    cmds:
+      - avs-toolkit-cli deploy --mode verifier-simple contracts --artifacts-path ./artifacts --operators wasmatic
